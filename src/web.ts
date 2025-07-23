@@ -10,6 +10,7 @@ export class PhoneNumberHintWeb extends WebPlugin implements PhoneNumberHintPlug
 
     async phonenumnerhint(options:{value:string}):Promise<{value:string}>{
     console.log('phonenumnerhint', options);
+    console.log('test')
     return options
   }
   
