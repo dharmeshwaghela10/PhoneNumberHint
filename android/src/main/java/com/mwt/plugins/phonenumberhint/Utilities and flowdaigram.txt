@@ -1,0 +1,77 @@
+ link of android plugin for phone number hint 
+ https:developer.android.com/identity/phone-number-hint
+
+
+ flow daigram of the code
+
+ [User clicks button in app]
+         |
+         V
+ [JS calls getPhoneNumber()]
+         |
+         V
+ [Capacitor calls getPhoneNumber in Java Plugin]
+         |
+         V
+ [Google Identity Client creates Hint Intent]
+         |
+         V
+ [Android shows phone number picker UI]
+         |
+         V
+ [User selects phone number] --> [User cancels]
+         |                             |
+         V                             V
+ [onActivityResult receives data]   [Reject call]
+         |
+         V
+ [Extract phone number from result]
+         |
+         V
+ [Resolve plugin call with phone number]
+         |
+         V
+ [JS receives phone number]
+
+
+
+
+ uses of the code:
+ 📱 Capacitor Plugin: Phone Number Hint (Android)
+ This Capacitor plugin enables Android apps to fetch a phone number hint from the user using the Google Identity Services API. It provides a smooth and secure UI for users to choose one of their device-associated phone numbers, avoiding the need for manual input.
+ ________________________________________
+ 🔧 How It Works
+ 1.	User taps a button to fetch phone number.
+ 2.	Plugin opens a Google-managed UI showing available numbers.
+ 3.	Upon selection, the number is returned to your JavaScript code.
+ ________________________________________
+ ✅ Benefits
+ •	Reduces user friction during sign-up/login.
+ •	More secure than manual input.
+ •	Uses official Google Play Services APIs.
+ •	Clean integration via modern Capacitor plugin.
+ ________________________________________
+ ⚙️ Android Requirements
+ •	Google Play Services enabled.
+ •	Add dependency to android/app/build.gradle:
+ •	implementation 'com.google.android.gms:play-services-auth:21.3.0'
+ ________________________________________
+ 💡 Usage Example in TypeScript
+ import { Plugins } from '@capacitor/core';
+ const { PhoneNumberHint } = Plugins;
+
+ async function requestPhoneNumber() {
+   try {
+     const result = await PhoneNumberHint.getPhoneNumber();
+     console.log('Phone number:', result.phoneNumber);
+   } catch (error) {
+     console.error('Phone number fetch failed:', error);
+   }
+ }
+ ________________________________________
+ 🧪 Tested On
+ •	✅ Android 14, 15
+ •	✅ Capacitor 4 & 5
+ •	✅ Real devices with SIMs
+ ________________________________________
+

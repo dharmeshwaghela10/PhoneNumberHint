@@ -7,4 +7,15 @@ export class PhoneNumberHintWeb extends WebPlugin implements PhoneNumberHintPlug
     console.log('ECHO', options);
     return options;
   }
+
+    async phonenumnerhint(options:{value:string}):Promise<{value:string}>{
+    console.log('phonenumnerhint', options);
+    return options
+  }
+  
+
+   async getPhoneNumber(): Promise<{ phoneNumber: string }> {
+    console.warn('PhoneNumberHint is not available on web.');
+    return { phoneNumber: '' };
+  }
 }
